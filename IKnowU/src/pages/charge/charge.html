@@ -1,0 +1,26 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>钱包充值</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding>
+    <h3>充值金额</h3>
+    <ion-row wrap>
+      <ion-col width-50 *ngFor="let amount of payAmountList;let i = index">
+        <button ion-button color="secondary" block [outline]="amount != selectedAmount" (click)="selectedAmount = amount">{{amount}}</button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-list radio-group [(ngModel)]="selectedPayMethod">
+    <ion-item *ngFor="let method of payMethodList;let i = index">
+      <ion-label><img src="assets/img/bill/pay-{{method.toLowerCase()}}.png" height="30"></ion-label>
+      <ion-radio value="{{method}}"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <div text-center padding><ion-note>点击去充值，表示已经阅读并同意</ion-note><a>充值协议</a></div>
+  <button ion-button full (click)="charge()">确定</button>
+</ion-content>

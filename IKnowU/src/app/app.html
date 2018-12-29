@@ -1,0 +1,11 @@
+﻿<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>设置</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <settings-page [isComponent]="true"></settings-page>
+  </ion-content>
+</ion-menu>
+<ion-nav #content [root]="rootPage"></ion-nav>

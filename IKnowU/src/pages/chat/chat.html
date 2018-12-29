@@ -1,0 +1,55 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>系统地图</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div id="chat" #chat>
+    <div id="div_device" class="panel panel-default" style="display:none">
+      <div class="select">
+        <label for="audioSource">Audio source: </label><ion-select interface="action-sheet" [(ngModel)]="audioSourceSelected" okText="确定" cancelText="取消">
+  <ion-option *ngFor="let item of audioSourceList" [value]="item.deviceId">{{item.deviceName}}</ion-option></ion-select>
+      </div>
+      <div class="select">
+        <label for="videoSource">Video source: </label><ion-select interface="action-sheet" [(ngModel)]="videoSourceSelected" okText="确定" cancelText="取消">
+  <ion-option *ngFor="let item of videoSourceList" [value]="item.deviceId">{{item.deviceName}}</ion-option>
+</ion-select>
+      </div>
+    </div>
+
+    <div id="div_join" class="panel panel-default">
+      <div class="panel-body">
+        Key: <ion-input id="key" type="text" value="" size="36" [(ngModel)]="key"></ion-input>
+        Channel: <ion-input id="channel" type="text" value="1000" size="4" [(ngModel)]="channel"></ion-input>
+        Host: <ion-checkbox id="video" [(ngModel)]="videoChecked"></ion-checkbox>
+        <button ion-button id="join" class="btn btn-primary" (click)="join()">Join</button>
+        <button ion-button id="leave" class="btn btn-primary" [disabled]="leaveDisabled" (click)="leave()">Leave</button>
+        <button ion-button id="publish" class="btn btn-primary" [disabled]="publishDisabled" (click)="publish()">Publish</button>
+        <button ion-button id="unpublish" class="btn btn-primary" [disabled]="unpublishDisabled" (click)="unpublish()">Unpublish</button>
+      </div>
+    </div>
+
+    <!--style>
+  .video__box{width:910px; margin:0 auto; overflow:hidden;}
+  .video__main{ width:810px; height:607px;float:left }
+  .video__list{ width:200px; height:607px; float:left;}
+  .video__item{ width:200px; height:174px; hei background:url(/img/icon_live.png) center center no-repeat; }
+  </style>
+  <div class="video__main">
+  </div>
+  <div class="video__list">
+      <div class="video__item"></div>
+      <div id="video" class="video__item">
+          <div id="agora_local"></div>
+      </div>
+  </div-->
+
+    <div id="video" style="margin:0 auto;">
+      <div id="agora_local" style="float:right;width:210px;height:147px;display:inline-block;"></div>
+    </div>
+
+  </div>
+</ion-content>

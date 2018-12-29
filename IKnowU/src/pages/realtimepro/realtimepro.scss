@@ -1,0 +1,19 @@
+﻿page-realtimepro {
+
+  .segment-md .segment-button {
+    font-size: 1.6rem;
+  }
+
+  [padding] h2:first-child {
+    margin-top: 0;
+  }
+
+  .component-content {
+    height: initial;
+  }
+
+  .component-content .scroll-content {
+    height: initial;
+    overflow: initial;
+  }
+}

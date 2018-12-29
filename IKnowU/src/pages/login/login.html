@@ -1,0 +1,37 @@
+﻿<ion-header [hidden]="isLogin && isPatternLockEnabled">
+  <ion-toolbar color="toolbar">
+    <ion-title>登录</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="" [style.margin-top]="(!isLogin || !isPatternLockEnabled) ? '0px' : '-30px'">
+  <div padding [hidden]="!isLogin || !isPatternLockEnabled">
+    <h1>{{showDate}} <ion-note>晴</ion-note></h1>
+    <h5>书是音符，谈话是歌</h5>
+  </div>
+  <ion-list [hidden]="isLogin && isPatternLockEnabled" class="animated fadeIn">
+    <ion-item>
+      <ion-label fixed>用户名</ion-label>
+      <ion-input type="text" [(ngModel)]="userInfo.userName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>密 码</ion-label>
+      <ion-input type="password" [(ngModel)]="userInfo.pwd"></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label>是否记住密码</ion-label>
+      <ion-checkbox checked="{{ispassword}}" (ionChange)="Chang($event)"></ion-checkbox>
+    </ion-item>
+    <div padding>
+      <button ion-button (click)="btnClick()" full>登&nbsp;&nbsp;录</button>
+    </div>
+  </ion-list>
+  
+  <div text-center [hidden]="!isLogin || !isPatternLockEnabled" class="animated fadeIn">
+    <br />
+    <img src="assets/img/avatar-{{logincode}}.png" class="user-img" height="100" />
+    <h5>{{loginName}}</h5>
+    <div id="patternContainer" style="margin: auto;"></div>
+    <button ion-button clear (click)="isLogin = false">切换用户</button>
+  </div>
+
+</ion-content>

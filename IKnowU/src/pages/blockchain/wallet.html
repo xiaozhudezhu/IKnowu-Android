@@ -1,0 +1,82 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>钱包</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="opType">
+    <ion-segment-button value="1">
+      创建账号
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      查询余额
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      转账
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="opType">
+    <ng-container>
+      <div *ngSwitchCase="1" class="animated fadeIn">
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>输入密码</ion-label>
+            <ion-input [(ngModel)]="newAccountPwd"></ion-input>
+          </ion-item>
+          <button ion-button full small (click)="newAccount()">创建</button>
+          <ion-item>
+            <h2>账号：</h2>
+            <p>{{newAccountHash}} </p>
+          </ion-item>
+        </ion-list>
+        </div>
+      <div *ngSwitchCase="2" class="animated fadeIn">
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>选择账号</ion-label>
+            <ion-select interface="action-sheet" [(ngModel)]="account" okText="确定" cancelText="取消" (ionChange)="getBalance()">
+              <ion-option *ngFor="let account of accounts" [value]="account">{{account}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>余额：</ion-label>
+            <ion-input [(ngModel)]="balanceStr"></ion-input>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div *ngSwitchCase="3" class="animated fadeIn">
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>源账号</ion-label>
+            <ion-select interface="action-sheet" [(ngModel)]="transfer.from" okText="确定" cancelText="取消">
+              <ion-option *ngFor="let account of accounts" [value]="account">{{account}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>目标账号</ion-label>
+            <ion-select interface="action-sheet" [(ngModel)]="transfer.to" okText="确定" cancelText="取消">
+              <ion-option *ngFor="let account of accounts" [value]="account">{{account}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>输入金额：</ion-label>
+            <ion-input [(ngModel)]="transfer.amount"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>输入密码：</ion-label>
+            <ion-input type="password" [(ngModel)]="transfer.pwd"></ion-input>
+          </ion-item>
+          <button ion-button full small (click)="sendTransaction()">确认转账</button>
+          <ion-item>
+            <h2>交易码：</h2>
+            <p>{{transfer.transactionHash}} </p>
+          </ion-item>
+        </ion-list>
+      </div>
+      </ng-container>
+    </div>
+        
+</ion-content>

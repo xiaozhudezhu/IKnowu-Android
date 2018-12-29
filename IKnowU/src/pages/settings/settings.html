@@ -1,0 +1,37 @@
+﻿<ion-header *ngIf="!isComponent">
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>我的</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+<ion-content [attr.padding]="!isComponent">
+  <ion-list>
+    <button ion-item (click)="openWallet()">
+      <!--<ion-icon name="usd"></ion-icon>-->
+      钱包
+      <div item-right>{{walletBalanceStr}}</div>
+    </button>
+    <button ion-item (click)="updatePassword()">
+      <!--<ion-icon name="lock"></ion-icon>-->
+      修改密码
+    </button>
+    <button ion-item (click)="openPage(friendsPage)">
+      <!--<ion-icon name="help"></ion-icon>-->
+      帮助
+    </button>
+    <button ion-item (click)="gotoMap()">
+      <!--<ion-icon name="map"></ion-icon>-->
+      系统地图
+    </button>
+    <button ion-item color="warn" (click)="logout()">
+      <!--<ion-icon name="power"></ion-icon>-->
+      注销
+    </button>
+  </ion-list>
+</ion-content>
+<ion-footer *ngIf="!isComponent">
+  <ion-toolbar>
+    
+  </ion-toolbar>
+</ion-footer>

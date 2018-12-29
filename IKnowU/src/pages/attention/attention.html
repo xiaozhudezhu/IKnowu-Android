@@ -1,0 +1,18 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>我的关注</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row wrap>
+      <ion-col (click)="gotoPage(menuBean.page)" class="menu-item" width-33 text-center *ngFor="let menuBean of attentionBeans;let i = index">
+        <img alt="{{menuBean.name}}" src="{{menuBean.img}}" />
+        <p>{{menuBean.name + (menuBean.count >=0 ? ('(' + menuBean.count + ')') : '')}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

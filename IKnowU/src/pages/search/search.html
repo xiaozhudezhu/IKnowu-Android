@@ -1,0 +1,42 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-searchbar [(ngModel)]="searchContent" (search)="search()" placeholder="搜索" animated="true"></ion-searchbar>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row padding-top padding-bottom>
+    <ion-col *ngFor="let item of searchCatalogs;let i = index">
+      <button ion-button small color="secondary" [outline]="!item.isSelected" (click)="item.isSelected = !item.isSelected">{{item.name}}</button>
+    </ion-col>
+  </ion-row>
+  <ion-item>
+    <ion-note>我搜过的</ion-note>
+    <button ion-button clear item-right icon-left color="dark" (click)="clearSearchHistory()">
+      <ion-icon name="backspace"></ion-icon>
+      清空
+    </button>
+  </ion-item>
+  <ion-list>
+    <button ion-item *ngFor="let item of searchHistories;let i = index" (click)="search(item.name)">{{item.name}}</button>
+  </ion-list>
+  <ion-item>
+    <ion-note>热门搜索</ion-note>
+  </ion-item>
+  <ion-list>
+    <ng-container width-50 *ngFor="let item of searchHotKeys;let i = index">
+      <ion-item *ngIf="i%2 == 0">
+        <ion-row>
+          <ion-col (click)="search(item.name)" ion-button clear class="hotkey-btn">
+            <span class="hotkey-number" [class.hotkey-first]="i == 0" [class.hotkey-third]="i == 2" [class.hotkey-default]="i > 2">{{i + 1}}</span>
+            {{item.name}}
+          </ion-col>
+          <ion-col (click)="search(item.name)" ion-button clear class="hotkey-btn">
+            <span class="hotkey-number" [class.hotkey-second]="i == 0" [class.hotkey-default]="i >= 2">{{i + 2}}</span>{{searchHotKeys[i+1].name}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

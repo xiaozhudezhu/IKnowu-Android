@@ -1,0 +1,52 @@
+﻿<ion-header *ngIf="!isComponent">
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>我关注的隐秘</ion-title>
+      <ion-buttons right>
+        <button ion-button icon-only color="royal" (click)="addAttention()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding [class.component-content]="isComponent">
+  <ion-segment [(ngModel)]="pcatalog">
+    <ion-segment-button *ngFor="let catalog of problemCatalogs;let i = index" value="catalog{{i}}">
+      {{catalog.name + '(' + catalog.count + ')'}}
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="pcatalog">
+    <ng-container *ngFor="let catalog of problemCatalogs;let j = index">
+      <div *ngSwitchCase="'catalog' + j" class="animated fadeIn">
+        <ion-list margin-top>
+          <ion-item-sliding (click)="showDetail(item)" [hidden]="!item.isFollow" *ngFor="let item of catalog.itemList;let k = index">
+            <button ion-item detail-push>
+              <ion-avatar item-left>
+                <img src="assets/img/avatar-{{item.createUser}}.png">
+              </ion-avatar>
+              <h2><ion-note>{{item.createTime}}</ion-note> {{item.content}}</h2>
+              <p *ngIf="item.status == '已解决'">{{item.resolveTime}} 由导师{{item.resolveUser}}解决</p>
+              <ion-badge item-right>{{item.status}}</ion-badge>
+            </button>
+            <ion-item-options side="right">
+              <button ion-button color="secondary" (click)="showDetail(item)">
+                <ion-icon name="more"></ion-icon>
+                更多
+              </button>
+              <button ion-button color="primary" [hidden]="item.isFollow" (click)="follow(item)">
+                <ion-icon name="add"></ion-icon>
+                关注
+              </button>
+              <button ion-button color="light" [hidden]="!item.isFollow" (click)="cancelFollow(item)">
+                <ion-icon name="remove"></ion-icon>
+                取消关注
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

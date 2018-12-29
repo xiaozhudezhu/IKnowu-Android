@@ -1,0 +1,34 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>账单</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ng-container *ngFor="let billMonth of billMonthList;let i = index">
+      <ion-item-divider *ngIf="billMonth.billList && billMonth.billList.length > 0">{{billMonth.month}}</ion-item-divider>
+      <ion-item-sliding (click)="showDetail(item)" *ngFor="let item of billMonth.billList;let k = index">
+        <button ion-item detail-push>
+          <ion-note item-left>{{item.date}}<br />{{item.time}}</ion-note>
+          <img src="assets/img/bill/pay-{{item.payMethod.toLowerCase()}}.png" height="30" margin-left>
+          <h1 item-right [style.color]="item.incomeType == '1' ? 'green' : 'black'">
+            {{(item.incomeType == '1' ? '+' : '-') + item.amount}}
+          </h1>
+        </button>
+        <ion-item-options side="right">
+          <button ion-button color="secondary" (click)="showDetail(item)">
+            <ion-icon name="more"></ion-icon>
+            更多
+          </button>
+          <button ion-button color="light" (click)="deleteBill(item, i, k)">
+            <ion-icon name="remove"></ion-icon>
+            删除记录
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ng-container>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,48 @@
+﻿search-page {
+
+  .hotkey-number {
+    border-radius: 2px;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+    text-align: center;
+    margin: 0px 5px;
+    font-size: 12px;
+    padding: 3px 0px;
+  }
+
+  .hotkey-first {
+    color: white;
+    background-color: red;
+  }
+
+  .hotkey-second {
+    color: white;
+    background-color: orange;
+  }
+
+  .hotkey-third {
+    color: white;
+    background-color: yellow;
+  }
+
+  .hotkey-default {
+    color: black;
+    background-color: #E4E4E4;
+  }
+
+  .hotkey-btn {
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+  }
+
+  .hotkey-btn .button-inner {
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: flex-start;
+    color: black;
+  }
+}
